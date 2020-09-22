@@ -14,9 +14,12 @@ class JoblyApi {
     
 
     try {
+
+      const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+
       return (await axios({
         method: verb,
-        url: `http://localhost:3001/${endpoint}`,
+        url: `${BASE_URL}/${endpoint}`,
         [verb === "get" ? "params" : "data"]: paramsOrData})).data;
         // axios sends query string data via the "params" key,
         // and request body data via the "data" key,
