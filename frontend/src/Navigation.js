@@ -5,7 +5,7 @@ import UserContext from "./UserContext";
 function Navigation({ logOut }) {
   const { currentUser } = useContext(UserContext);
 
-  
+
   const loggedInNavBar = (
     <ul className="navbar-nav ml-auto inline">
       <li className="nav-item">

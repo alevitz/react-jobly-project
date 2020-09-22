@@ -8,7 +8,7 @@ function Company() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const { handle } = useParams();
   const [company, setCompany] = useState(null);
-  const [userJobIds, setUserJobIds] = useState(currentUser.jobs ? currentUser.jobs.map(job => job.id) : []);
+  const [userJobIds] = useState(currentUser.jobs ? currentUser.jobs.map(job => job.id) : []);
 
   useEffect(() => {
     async function getCompany() {
@@ -24,7 +24,7 @@ function Company() {
       setCompany(result);
     }
     getCompany();
-  }, []);
+  }, [handle, userJobIds]);
 
 
   const apply = async (idx) => {

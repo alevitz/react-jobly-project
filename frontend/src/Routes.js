@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import Companies from "./Companies";
 import Jobs from "./Jobs";
@@ -7,7 +7,7 @@ import Company from "./Company";
 import Login from "./Login";
 import Profile from "./Profile";
 
-function Routes({setToken}) {
+function Routes({ setToken }) {
   return (
     <div className="pt-5">
       <Switch >
@@ -21,7 +21,7 @@ function Routes({setToken}) {
           <Jobs />
         </Route>
         <Route exact path="/login">
-          <Login setToken={setToken}/>
+          <Login setToken={setToken} />
         </Route>
         <Route exact path="/profile">
           <Profile />
@@ -30,7 +30,7 @@ function Routes({setToken}) {
           <Home />
         </Route>
       </Switch>
-      </div>
+    </div>
   );
 }
 

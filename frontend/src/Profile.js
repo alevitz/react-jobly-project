@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import JoblyApi from './JoblyAPI';
 import UserContext from "./UserContext";
 
 function Profile() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [changeMade, setChangeMade] = useState(false);
   const [input, setInput] = useState({
     first_name: currentUser.first_name || "",
     last_name: currentUser.last_name || "",
@@ -27,7 +28,7 @@ function Profile() {
     evt.preventDefault();
 
     if(input.password.length === 0){
-      alert("Password required");
+      setInput(input => ({...input, errors: ["Password is required"]}))
       return;
     }
 
@@ -48,7 +49,9 @@ function Profile() {
         password: ""
       }));
       setCurrentUser(result);
-      alert("Updated user information");
+      setChangeMade(true);
+      setTimeout(() => setChangeMade(false), 3000);
+            
     } catch (errors) {
       setInput(f => ({ ...f, errors }))
     }
@@ -112,6 +115,11 @@ function Profile() {
         type="password"
       ></input>
       </div>
+      {changeMade ? <div className="alert alert-success" role="alert">
+      Updated user information
+</div> : null}
+      {input.errors.length ? <div className="alert alert-danger" role="alert">
+      {input.errors[0]}</div> : null}
       <button className="btn btn-primary float-right" onClick={submitForm} type="submit">Save Changes</button>
       </form>
     </div>

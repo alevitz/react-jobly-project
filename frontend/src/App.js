@@ -13,13 +13,13 @@ function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
 
   useEffect(() => {
-    async function getCurrentUser(){
-      try{
-          let {username} = decode(token);
-          let currentUser = await JoblyApi.getCurrentUser(username);          
-          setCurrentUser(currentUser);
-      }catch (err) {
-          setCurrentUser(null);
+    async function getCurrentUser() {
+      try {
+        let { username } = decode(token);
+        let currentUser = await JoblyApi.getCurrentUser(username);
+        setCurrentUser(currentUser);
+      } catch (err) {
+        setCurrentUser(null);
       }
       setInfoLoaded(true);
     }
@@ -34,16 +34,16 @@ function App() {
   }
 
 
-  if(!infoLoaded){
+  if (!infoLoaded) {
     return <h1>Loading...</h1>
   }
 
   return (
     <div>
       <BrowserRouter>
-        <UserContext.Provider value={{currentUser, setCurrentUser}}>
-          <Navigation logOut={handleLogOut}/>
-          <Routes setToken={setToken}/>
+        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+          <Navigation logOut={handleLogOut} />
+          <Routes setToken={setToken} />
         </UserContext.Provider>
       </BrowserRouter>
     </div>
